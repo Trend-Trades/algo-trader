@@ -1,44 +1,49 @@
 # algo-trader
 
-## Daily CANSLIM + Leif Soreide Style Scan
+## What This Is
 
-The daily scan cron job runs at 5:00 AM PT (8:00 AM EST) M-F and delivers a formatted market scan report to Discord channel 1531474112239767713.
+The systematic version of my daily CANSLIM + Leif Soreide style scan.
 
-### Methodology
+Every day I scan the market, find stocks matching my edge, and tell you:
+- **What I found** — tickers that fit the criteria
+- **Where I'd buy** — entry/pivot, stop, targets
+- **Why** — fundamentals + pattern setup + volume characteristics
 
-- **CANSLIM fundamentals** (EPS acceleration, ROE, institutional sponsorship)
-- **Leif Soreide High Tight Flags** (90%+ pole in ≤8 weeks, 10-25% pullback above 50DMA, volume dry-up)
-- **Breakout patterns** (cup & handle, flat base press-outs)
-- **Post-earnings RS leaders**
-- **Relative strength in weak tape** (stocks holding near ATHs while broad market pulls back)
+This repo is the foundation. Everything branches from here.
+
+## The Scan
+
+Runs M-F at 5:00 AM PT (8:00 AM EST) and posts to Discord.
+
+**Patterns I scan for:**
+- High Tight Flags (90%+ pole in ≤8 weeks, 10-25% pullback above 50DMA, volume dry-up)
+- Breakouts / pressing out of bases (cup & handle, flat base)
+- Post-earnings relative strength leaders
+- Stocks holding near ATHs while broad market pulls back (RS in weak tape)
+
+## Branches
+
+| Branch | What's on it |
+|---|---|
+| `main` | The core Python scan — what posts to Discord daily |
+| `tradingview` | Pine Script experiments (visual charts, real-time alerts) |
 
 ## Project Structure
 
 ```
-algo-trader/
-├── scans/            # Pattern detection & daily scan logic
-├── data/             # Data fetching (Yahoo Finance v8 API)
-├── backtests/        # Historical pattern validation
-├── risk/             # Position sizing & portfolio risk
-├── broker/           # schwab-py paper/live execution
-├── tradingview/      # Pine Script patterns (branch)
-├── config/           # Parameters
-└── scripts/          # Cron job wrappers & utilities
+algo_trader/
+├── __init__.py
+├── data/           # Fetching market data (Yahoo Finance v8 API)
+├── patterns/       # Pattern detection (HTF, breakout, RS, etc.)
+└── scans/          # Daily scan runner + Discord posting
 ```
 
 ## Phases
 
-- **Phase 0** — ✅ Daily Discord scan (existing cron)
-- **Phase 1** — Pattern encoding into Python + backtesting
-- **Phase 2** — Paper trading via schwab-py
-- **Phase 3** — Live execution
+- **Phase 0** — ✅ Daily Discord scan (live)
 
-## Data Source
+This is where we start. Will update as we build.
 
-Yahoo Finance v8 chart API (free, no key required).  
-Cron job pulls data programmatically using the v8 endpoint.
+---
 
-## Branches
-
-- `main` — Core Python algo (backtesting, execution)
-- `tradingview` — Pine Script experiments for visual charting & alerts
+*Built for Trend_Trades by Hermione*
