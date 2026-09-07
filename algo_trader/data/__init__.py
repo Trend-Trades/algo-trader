@@ -1,0 +1,1 @@
+"""Data fetching for stock analysis."""
